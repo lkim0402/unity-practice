@@ -64,8 +64,10 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.40f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ObjectHit.cs" />
-    <Compile Include="Assets\Mover.cs" />
+    <Compile Include="Assets\Scripts\ObjectHit.cs" />
+    <Compile Include="Assets\Scripts\Mover.cs" />
+    <Compile Include="Assets\Scripts\Dropper.cs" />
+    <Compile Include="Assets\Scripts\Scorer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
