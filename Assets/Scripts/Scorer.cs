@@ -7,7 +7,9 @@ public class Scorer : MonoBehaviour
 {
     int hits = 0;
     private void OnCollisionEnter (Collision other) {
-        hits++;
-        Debug.Log("Current number of bumps: " + hits);
+        if (other.gameObject.tag != "Hit") {
+            hits++;
+            Debug.Log("Current number of bumps: " + hits);
+        }
     }
 }
