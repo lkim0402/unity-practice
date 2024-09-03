@@ -7,10 +7,13 @@ public class Movement : MonoBehaviour
     [SerializeField] float rocketSpeed = 1000f;
     [SerializeField] float rotationSpeed = 1f;
     Rigidbody rb;
+    AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
-            rb = GetComponent<Rigidbody>(); 
+        rb = GetComponent<Rigidbody>(); 
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -21,14 +24,17 @@ public class Movement : MonoBehaviour
     }
 
     void ProcessThrust() {
-        if (Input.GetKey(KeyCode.Space)){
-            // Vector3 vector = new Vector3(0, rocketSpeed * Time.deltaTime, 0);
-            // rb.AddRelativeForce(vector);
-
-            // rb.AddRelativeForce(Vector3.up);
-
+        if (Input.GetKey(KeyCode.Space))
+        {
             rb.AddRelativeForce(Vector3.up * rocketSpeed * Time.deltaTime);
-
+            if (!audioSource.isPlaying) 
+            {
+                audioSource.Play();
+            }  
+        } 
+        else 
+        {
+            audioSource.Pause();
         }
     }
 
@@ -45,7 +51,8 @@ public class Movement : MonoBehaviour
 
     private void ApplyRotation(float speed)
     {
-        
+        rb.freezeRotation = true; // freezing rotation so we can manually rotate
         transform.Rotate(Vector3.forward * speed * Time.deltaTime);
+        rb.freezeRotation = false; //un-freezing rotation
     }
 }
