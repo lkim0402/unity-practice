@@ -6,6 +6,8 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] float rocketSpeed = 1000f;
     [SerializeField] float rotationSpeed = 1f;
+
+    [SerializeField] AudioClip mainEngine;
     Rigidbody rb;
     AudioSource audioSource;
 
@@ -29,7 +31,7 @@ public class Movement : MonoBehaviour
             rb.AddRelativeForce(Vector3.up * rocketSpeed * Time.deltaTime);
             if (!audioSource.isPlaying) 
             {
-                audioSource.Play();
+                audioSource.PlayOneShot(mainEngine);
             }  
         } 
         else 
@@ -49,10 +51,10 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private void ApplyRotation(float speed)
+    private void ApplyRotation(float rotationSpeed)
     {
         rb.freezeRotation = true; // freezing rotation so we can manually rotate
-        transform.Rotate(Vector3.forward * speed * Time.deltaTime);
+        transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
         rb.freezeRotation = false; //un-freezing rotation
     }
 }
