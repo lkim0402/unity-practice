@@ -70,7 +70,6 @@ public class CollisionHandler : MonoBehaviour
 
         // GetComponent<Movement>().enabled = true;
         // No need to include this line because the ReloadScene overwrites this
-
     }
     void LoadNextScene()
     {
@@ -79,6 +78,7 @@ public class CollisionHandler : MonoBehaviour
 
         if (nextLevelIndex == SceneManager.sceneCountInBuildSettings)
         {
+            // Start level from beginning if we reached the maximum level
             indexToLoad = 0;
         } 
         else {
