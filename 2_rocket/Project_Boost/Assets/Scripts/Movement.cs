@@ -20,6 +20,10 @@ public class Movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>(); 
         audioSource = GetComponent<AudioSource>();
+
+        // mainThrust.Stop();
+        // rightThrust.Stop();
+        // leftThrust.Stop();
     }
 
     // Update is called once per frame
@@ -47,35 +51,35 @@ public class Movement : MonoBehaviour
         } 
         else 
         {
-            mainThrust.Pause();
-            audioSource.Pause();
+            mainThrust.Stop();
+            audioSource.Stop();
         }
     }
 
     void ProcessRotation() {
         if (Input.GetKey(KeyCode.A))
         {
+            ApplyRotation(rotationSpeed);
             if (!rightThrust.isPlaying)
             {
                 rightThrust.Play();
                 Debug.Log("right thrust!");
             } 
-            ApplyRotation(rotationSpeed);
         }
         else if (Input.GetKey(KeyCode.D))
         {
             
+            ApplyRotation(-rotationSpeed);
             if (!leftThrust.isPlaying)
             {
                 leftThrust.Play();
                 Debug.Log("left thrust!");
             }
-            ApplyRotation(-rotationSpeed);
         }
         else 
         {
-            rightThrust.Pause();
-            leftThrust.Pause();
+            rightThrust.Stop();
+            leftThrust.Stop();
         }
     }
 
