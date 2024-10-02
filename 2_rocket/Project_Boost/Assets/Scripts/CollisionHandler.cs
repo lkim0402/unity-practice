@@ -16,16 +16,24 @@ public class CollisionHandler : MonoBehaviour
 
     //caching
     AudioSource audioSource;
+    // Collider collider;
 
     bool isTransitioning = false;
+    bool collisionDisabled = false;
 
     void Start()
     { 
         audioSource = GetComponent<AudioSource>();
+        // collider = GetComponent<BoxCollider>();
+    }
+
+    void Update()
+    {
+        ProcessKeys();
     }
     void OnCollisionEnter(Collision other)
     {
-        if (isTransitioning) return;
+        if (isTransitioning || collisionDisabled) return;
 
         switch(other.gameObject.tag) {
             case "Friendly": 
@@ -71,7 +79,7 @@ public class CollisionHandler : MonoBehaviour
         // GetComponent<Movement>().enabled = true;
         // No need to include this line because the ReloadScene overwrites this
     }
-    void LoadNextScene()
+    public void LoadNextScene()
     {
         int nextLevelIndex = SceneManager.GetActiveScene().buildIndex + 1;
         int indexToLoad;
@@ -91,5 +99,18 @@ public class CollisionHandler : MonoBehaviour
         // Reloading the scene
         int currentIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentIndex);
+    }
+
+    void ProcessKeys()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            LoadNextScene();
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            collisionDisabled = !collisionDisabled; //toggle collision
+        }
     }
 }

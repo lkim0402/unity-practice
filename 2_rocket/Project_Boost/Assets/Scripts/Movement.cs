@@ -9,21 +9,18 @@ public class Movement : MonoBehaviour
 
     [SerializeField] AudioClip mainEngine;
 
-    [SerializeField] ParticleSystem mainThrust;
-    [SerializeField] ParticleSystem leftThrust;
-    [SerializeField] ParticleSystem rightThrust;
+    [SerializeField] ParticleSystem mainThrustParticles;
+    [SerializeField] ParticleSystem leftThrustParticles;
+    [SerializeField] ParticleSystem rightThrustParticles;
     Rigidbody rb;
     AudioSource audioSource;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>(); 
         audioSource = GetComponent<AudioSource>();
-
-        // mainThrust.Stop();
-        // rightThrust.Stop();
-        // leftThrust.Stop();
     }
 
     // Update is called once per frame
@@ -36,23 +33,30 @@ public class Movement : MonoBehaviour
     void ProcessThrust() {
         if (Input.GetKey(KeyCode.Space))
         {
-            // thrust particle effect
-            if (!mainThrust.isPlaying)
-            {
-                mainThrust.Play();
-                Debug.Log("Main thrust?");
-            }
-
-            rb.AddRelativeForce(Vector3.up * rocketSpeed * Time.deltaTime);
-            if (!audioSource.isPlaying) 
-            {
-                audioSource.PlayOneShot(mainEngine);
-            }  
-        } 
-        else 
+            StartThrusting();
+        }
+        else
         {
-            mainThrust.Stop();
             audioSource.Stop();
+            mainThrustParticles.Stop();        
+        }
+    }
+
+    void StartThrusting()
+    {
+        rb.AddRelativeForce(Vector3.up * rocketSpeed * Time.deltaTime);
+
+        // only play the audio if you're not already playing
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(mainEngine);
+        }
+
+        // only play the particles if you're not already playing
+        if (!mainThrustParticles.isPlaying)
+        {
+            mainThrustParticles.Play();
+            Debug.Log("Main thrust!");
         }
     }
 
@@ -60,26 +64,26 @@ public class Movement : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             ApplyRotation(rotationSpeed);
-            if (!rightThrust.isPlaying)
+            if (!rightThrustParticles.isPlaying)
             {
-                rightThrust.Play();
-                Debug.Log("right thrust!");
-            } 
+                rightThrustParticles.Play();
+                Debug.Log("Going left - right thrust!");
+            }
         }
         else if (Input.GetKey(KeyCode.D))
         {
             
             ApplyRotation(-rotationSpeed);
-            if (!leftThrust.isPlaying)
+            if (!leftThrustParticles.isPlaying)
             {
-                leftThrust.Play();
-                Debug.Log("left thrust!");
-            }
+                leftThrustParticles.Play();
+                Debug.Log("Going right - left thrust!");
+            } 
         }
         else 
         {
-            rightThrust.Stop();
-            leftThrust.Stop();
+            rightThrustParticles.Stop();
+            leftThrustParticles.Stop();
         }
     }
 
@@ -89,4 +93,6 @@ public class Movement : MonoBehaviour
         transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
         rb.freezeRotation = false; //un-freezing rotation
     }
+
+
 }

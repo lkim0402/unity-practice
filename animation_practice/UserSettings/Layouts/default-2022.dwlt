@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Inspector
   m_RootView: {fileID: 3}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 87
+  controlID: 67
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -809,11 +809,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.1290943, y: 0.77161837, z: -0.165925, w: -0.60034066}
     speed: 2
-    m_Value: {x: -0.12949282, y: 0.7731654, z: -0.16747145, w: -0.5978295}
+    m_Value: {x: -0.12909429, y: 0.77161825, z: -0.16592498, w: -0.6003406}
   m_Size:
     m_Target: 7.9275045
     speed: 2
-    m_Value: 8.301052
+    m_Value: 7.9275045
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -991,7 +991,7 @@ MonoBehaviour:
   m_LastFolders:
   - Assets/Mixamo
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\artygen\Documents\GitHub\unity-practice\animation_test\animation_test
+  m_LastProjectPath: C:\Users\artygen\Documents\GitHub\unity-practice\animation_practice
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
@@ -1054,7 +1054,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: c623000014c00000625a0000d8590000
+    m_ExpandedInstanceIDs: c623000014c00000625a0000d8590000045b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1119,7 +1119,7 @@ MonoBehaviour:
   m_ObjectsLockedBeforeSerialization: []
   m_InstanceIDsLockedBeforeSerialization: 
   m_PreviewResizer:
-    m_CachedPref: 160
+    m_CachedPref: 574
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
