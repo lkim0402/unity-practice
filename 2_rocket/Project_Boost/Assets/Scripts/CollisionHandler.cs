@@ -44,7 +44,7 @@ public class CollisionHandler : MonoBehaviour
             case "Finish":
                 NextSceneSequence();
                 break;
-            case "Obstacle": 
+            default:
                 CrashSequence();
                 break;
         }
@@ -70,6 +70,7 @@ public class CollisionHandler : MonoBehaviour
         audioSource.Stop();
 
         // effects
+        audioSource.volume = 0.1f;
         audioSource.PlayOneShot(collision);
         crashParticle.Play();
 
